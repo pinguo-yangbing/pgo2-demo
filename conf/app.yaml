@@ -25,10 +25,10 @@ components:
     levels: "ALL"
     targets:
       info:
-        name:     "file"
+        class:     "@pgo/FileTarget"
         levels:    "DEBUG,INFO,NOTICE"
         filePath:  "@runtime/notice.log"
       error:
-        name:     "file"
+        class:     "@pgo/FileTarget"
         levels:    "WARN,ERROR,FATAL"
         filePath:  "@runtime/application.log"

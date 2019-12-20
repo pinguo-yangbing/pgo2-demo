@@ -1,33 +1,24 @@
 package main
 
 import (
-	"fmt"
-	"time"
+	"io"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.New()
 
-	// LoggerWithFormatter middleware will write the logs to gin.DefaultWriter
-	// By default gin.DefaultWriter = os.Stdout
-	router.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
+	gin.DisableConsoleColor()
 
-		// your custom format
-		return fmt.Sprintf("%s - [%s] \"%s %s %s %d %s  %s\"\n",
-			param.ClientIP,
-			param.TimeStamp.Format(time.RFC1123),
-			param.Method,
-			param.Path,
-			param.Request.Proto,
-			param.StatusCode,
-			param.Latency,
-			param.ErrorMessage,
-		)
-	}))
-	router.Use(gin.Recovery())
+	// Logging to a file.
+	f, _ := os.Create("gin.log")
+	gin.DefaultWriter = io.MultiWriter(f)
 
+	// Use the following code if you need to write the logs to file and console at the same time.
+	// gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
+
+	router := gin.Default()
 	router.GET("/test/index", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"data":"hello world",

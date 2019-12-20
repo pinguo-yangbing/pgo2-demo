@@ -1,11 +1,12 @@
-package controller
+package Controller
 
-import "github.com/pinguo/pgo2"
+import "github.com/pinguo/pgo"
 
 type TestController struct {
-	pgo2.Controller
+
+	pgo.Controller
 }
 
 func (t *TestController) ActionIndex() {
-	t.Json("hello world", 200, "success")
+	t.OutputJson("hello world", 200, "success")
 }

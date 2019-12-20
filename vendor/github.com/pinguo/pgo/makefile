@@ -4,7 +4,7 @@
 # SET BIN NAME BY USER
 binName:=pgo-demo
 
-goBin:=/Users/yangbing/go/bin/go1.13
+goBin:=go
 glideBin:=glide
 
 ######## DO NOT CHANGE THE FLOWING CONTENT ########

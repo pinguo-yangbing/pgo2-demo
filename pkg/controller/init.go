@@ -1,8 +1,7 @@
-package controller
+package Controller
 
-import "github.com/pinguo/pgo2"
+import "github.com/pinguo/pgo"
 
-func init() {
-	container := pgo2.App().Container()
-	container.Bind(&TestController{})
+func init(){
+	pgo.App.GetContainer().Bind(&TestController{})
 }

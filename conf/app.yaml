@@ -32,3 +32,16 @@ components:
         class:     "@pgo/FileTarget"
         levels:    "WARN,ERROR,FATAL"
         filePath:  "@runtime/application.log"
+
+  router:
+    rules:
+      - "^/dd1/data1/index/(\\d+)$ => /dd/data/index"
+      - "^/dd2/data2/index/(\\d+)$ => /dd/data/index"
+      - "^/dd3/data3/index/(\\d+)$ => /dd/data/index"
+      - "^/dd4/data4/index/(\\d+)$ => /dd/data/index"
+      - "^/dd5/data5/index/(\\d+)$ => /dd/data/index"
+      - "^/dd6/data6/index/(\\d+)$ => /dd/data/index"
+      - "^/dd7/data7/index/(\\d+)$ => /dd/data/index"
+      - "^/dd8/data8/index/(\\d+)$ => /dd/data/index"
+      - "^/dd9/data9/index/(\\d+)$ => /dd/data/index"
+      - "^/dd10/data10/index/(\\d+)$ => /dd/data/index"

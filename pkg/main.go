@@ -1,10 +1,33 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"fmt"
+	"time"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
+	router := gin.New()
 
-	r := gin.Default()
+	// LoggerWithFormatter middleware will write the logs to gin.DefaultWriter
+	// By default gin.DefaultWriter = os.Stdout
+	router.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
+
+		// your custom format
+		return fmt.Sprintf("%s - [%s] \"%s %s %s %d %s  %s\"\n",
+			param.ClientIP,
+			param.TimeStamp.Format(time.RFC1123),
+			param.Method,
+			param.Path,
+			param.Request.Proto,
+			param.StatusCode,
+			param.Latency,
+			param.ErrorMessage,
+		)
+	}))
+	router.Use(gin.Recovery())
+
 	r.GET("/test/index", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"data":"hello world",
@@ -12,5 +35,6 @@ func main() {
 			"message": "pong",
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+
+	router.Run(":8080")
 }

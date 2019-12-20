@@ -28,7 +28,7 @@ func main() {
 	}))
 	router.Use(gin.Recovery())
 
-	r.GET("/test/index", func(c *gin.Context) {
+	router.GET("/test/index", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"data":"hello world",
 			"status":200,
